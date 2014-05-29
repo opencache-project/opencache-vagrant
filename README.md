@@ -10,12 +10,26 @@ Based on [Debian](https://debian.org) 7.0. Has the following tools installed:
 * [OpenCache](https://github.com/broadbent/opencache)
 * [Scootplayer](https://github.com/broadbent/scootplayer)
 
-Also includes a number of development and build tools (such as `ant`, `openjdk-6-jdk`, etc.)
+Also includes a number of development and build tools (such as `ant`, `openjdk-6-jdk`, `pip`, etc.)
 
 
 ## Installation ##
 
 To use the OpenCache Vagrant build, simply use `vagrant up`.
+
+## Usage ##
+
+Log in to the Vagrant box with `vagrant ssh`.
+
+This will login with the `vagrant` user and password `vagrant`.
+
+The root password is also set to `vagrant`, although `sudo` is installed and configured for the `vagrant` user.
+
+To start `mininet` with a full mesh topology (such as that in the [GÉANT OpenFlow Facility](http://www.geant.net/opencalls/Overview/Documents/Open%20Call%20Technical%20Annex%20B%20GEANT%20Openflow%20Testbed%20Facility%20FINAL.pdf)) use:
+
+```
+sudo mn --custom /home/vagrant/mininet/custom/mesh.py --topo mesh --mac --arp --switch ovsk --controller remote
+```
 
 ## License ##
 
