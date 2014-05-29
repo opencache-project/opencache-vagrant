@@ -4,7 +4,7 @@
 
 Based on [Debian](https://debian.org) 7.0. Has the following tools installed:
 
-* [Mininet](https://github.com/mininet/mininet) (install using `-a`)
+* [Mininet](https://github.com/mininet/mininet) (installed using `-a`)
 * [Floodlight](https://github.com/floodlight/floodlight)
 * [Flowvisor](https://github.com/OPENNETWORKINGLAB/flowvisor)
 * [OpenCache](https://github.com/broadbent/opencache)
