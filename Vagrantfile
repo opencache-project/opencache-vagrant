@@ -125,4 +125,12 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # chef-validator, unless you changed the configuration.
   #
   #   chef.validation_client_name = "ORGNAME-validator"
+
+  # Configure X11 forwarding for use with Mininet
+  config.ssh.forward_agent = true
+  config.ssh.forward_x11 = true
+  config.ssh.shell = "bash"
+  config.vm.provision "shell",
+    inline: "sudo ln -s /home/vagrant/.Xauthority /root/.Xauthority"
+
 end
