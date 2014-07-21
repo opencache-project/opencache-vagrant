@@ -30,7 +30,7 @@ The root password is also set to `vagrant`, although `sudo` is installed and con
 To start a simple tree topology with four nodes, run the `simple.py` example:
 
 ```
-/vagrant/examples/simple/simple.py
+sudo /vagrant/examples/simple/simple.py
 ```
 
 Ensure a node is running on the host machine. Use another terminal and run `vagrant ssh` again. Start `floodlight` with:
@@ -42,15 +42,13 @@ cd floodlight && java -jar target/floodlight.jar
 `h1` acts as the OpenCache controller:
 
 ```
- opencache -c --config=/vagrant/examples/s
-imple/config/controller.conf
+ opencache -c --config=/vagrant/examples/simple/config/controller.conf
 ```
 
 `h2` acts as an OpenCache node:
 
 ```
-opencache -n --config=/vagrant/examples/s
-imple/config/node.conf
+opencache -n --config=/vagrant/examples/simple/config/node.conf
 ```
 
 You can now use the client utils included with OpenCache to control the small deployment. For example, run a simple HTTP server on `h3` and a client on `h4`. Using OpenCache, we can now redirect requests to `h3` to `h2` by adding the expression `10.0.0.3` to our running OpenCache controller.
@@ -58,8 +56,11 @@ You can now use the client utils included with OpenCache to control the small de
 
 ## Update ##
 
-git pull
+To update the OpenCache development environment, simply use: 
 
+```
+git pull && vagrant box update
+```
 
 ## License ##
 
