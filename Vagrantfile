@@ -14,9 +14,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   # Remote location to pull Vagrant box image from. Includes checksum of
   # box download for integrity checking.
-  config.vm.box_url = "http://opencache.io/vagrant/opencache-vagrant.box"
-  config.vm.box_download_checksum = "c491a024efef7f1a6f88949e51cbef7c0d8d7ca7"
-  config.vm.box_download_checksum_type = "sha1"
+  config.vm.box = "broadbent/opencache-vagrant"
+  config.vm.box_check_update = true
 
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
@@ -129,8 +128,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # Configure X11 forwarding for use with Mininet
   config.ssh.forward_agent = true
   config.ssh.forward_x11 = true
-  config.ssh.shell = "bash"
-  config.vm.provision "shell",
-    inline: "sudo ln -s /home/vagrant/.Xauthority /root/.Xauthority"
+  config.vm.provision "shell", path: "setup.sh"
 
 end

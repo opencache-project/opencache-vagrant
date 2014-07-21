@@ -15,7 +15,9 @@ Also includes a number of development and build tools (such as `ant`, `openjdk-6
 
 ## Installation ##
 
-To use the OpenCache Vagrant build, simply use `vagrant up`.
+To use the OpenCache Vagrant build, pull the latest version of this repository with `git pull`.
+
+Then, simply use `vagrant up`. This will download the VM and start it. 
 
 ## Usage ##
 
@@ -25,11 +27,39 @@ This will login with the `vagrant` user and password `vagrant`.
 
 The root password is also set to `vagrant`, although `sudo` is installed and configured for the `vagrant` user.
 
-To start `mininet` with a full mesh topology (such as that in the [GÉANT OpenFlow Facility](http://www.geant.net/opencalls/Overview/Documents/Open%20Call%20Technical%20Annex%20B%20GEANT%20Openflow%20Testbed%20Facility%20FINAL.pdf)) use:
+To start a simple tree topology with four nodes, run the `simple.py` example:
 
 ```
-sudo mn --custom /home/vagrant/mininet/custom/mesh.py --topo mesh --mac --arp --switch ovsk --controller remote
+/vagrant/examples/simple/simple.py
 ```
+
+Ensure a node is running on the host machine. Use another terminal and run `vagrant ssh` again. Start `floodlight` with:
+
+```
+cd floodlight && java -jar target/floodlight.jar
+```
+
+`h1` acts as the OpenCache controller:
+
+```
+ opencache -c --config=/vagrant/examples/s
+imple/config/controller.conf
+```
+
+`h2` acts as an OpenCache node:
+
+```
+opencache -n --config=/vagrant/examples/s
+imple/config/node.conf
+```
+
+You can now use the client utils included with OpenCache to control the small deployment. For example, run a simple HTTP server on `h3` and a client on `h4`. Using OpenCache, we can now redirect requests to `h3` to `h2` by adding the expression `10.0.0.3` to our running OpenCache controller.
+
+
+## Update ##
+
+git pull
+
 
 ## License ##
 
